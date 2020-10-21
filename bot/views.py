@@ -33,7 +33,7 @@ def response(request):
             answer = body['event']['text']
             state.answered = True
             card = state.card
-            
+
             if card.back.lower() in answer.lower():
                 state.correct = True
                 message = f'Si! {card.back} es correcto.'
@@ -43,15 +43,5 @@ def response(request):
 
         state.save()
         slack_client.send_messgage(message)
-        
-        
-        # If there is an active state object for the user
-            # get the card
-            # if the front was asked then check to see if the back matches the text of the message
-            # if it does update the state to correct and send a confirmation message
-            # if it doesn't then update teh state to incorrect and send a message
-            
-        
-        
 
     return HttpResponse('ok')
