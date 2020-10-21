@@ -33,8 +33,8 @@ def response(request):
             answer = body['event']['text']
             state.answered = True
             card = state.card
-
-            if card.back in answer:
+            
+            if card.back.lower() in answer.lower():
                 state.correct = True
                 message = f'Si! {card.back} es correcto.'
             else:
