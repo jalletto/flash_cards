@@ -1,16 +1,18 @@
 from decks.models import State
+from bot.action_list import ACTION_LIST
 
 class MessageParser:
     
     @classmethod
     def parse(cls, request_body):
 
-        text = request_body['event']['text'] if request_body['event']['text']
+        if 'event' in request_body: 
+            text = request_body['event']['text']
         
         if 'challenge' in request_body:
             response = { 
                 'action' : ACTION_LIST['challenge'],
-                'text'   : body['challenge']
+                'text'   : request_body['challenge']
             }
         elif request_body['event']['user'] == 'U01CD4QHR97':
             response = {
@@ -22,9 +24,10 @@ class MessageParser:
                 'action' : ACTION_LIST['answer_question'],
                 'text'   : text
             }
-        elif not State.is_active_question
+        elif not State.is_active_question:
             response = {
                 'action' : ACTION_LIST['ask_a_question'],
                 'text'   : text
             }
 
+        return response

@@ -9,4 +9,4 @@ class AskQuestion:
         card  = random_choice(deck.cards.all())
         State.objects.create(card=card)
         
-        return f'Como se dice {card.front} en espanol?'
+        return { 'message' : f'Como se dice {card.front} en espanol?', 'is_slack_message' : True }

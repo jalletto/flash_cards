@@ -1,6 +1,7 @@
 from bot.actions.ask_question import AskQuestion
 from bot.actions.challenge_response import ChallengeResponse
 from bot.actions.check_question_answer import CheckQuestionAnswer
+from bot.action_list import ACTION_LIST
 
 class ActionDispatcher:
 

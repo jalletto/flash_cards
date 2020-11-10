@@ -1,4 +1,4 @@
-from deck.models import State, Card
+from decks.models import State, Card
 
 class CheckQuestionAnswer:
 
@@ -15,4 +15,4 @@ class CheckQuestionAnswer:
             state.correct = False
             message = f'No. La respuesta correcta es {card.back}'
         
-        return message
+        return { 'message' : message, 'is_slack_message' : True }
