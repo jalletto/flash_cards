@@ -26,3 +26,8 @@ class State(models.Model):
     front_of_card = models.BooleanField(null=True)
     created_at    = models.DateTimeField(auto_now_add=True)
     updated_at    = models.DateTimeField(auto_now=True)
+
+    @classmethod
+    def is_active_question(cls):
+        not cls.objects.last().answered()
+
