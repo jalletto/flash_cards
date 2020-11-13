@@ -1,6 +1,5 @@
 from django.db import models
 
-
 class Deck(models.Model):
     name       = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -26,3 +25,7 @@ class State(models.Model):
     front_of_card = models.BooleanField(null=True)
     created_at    = models.DateTimeField(auto_now_add=True)
     updated_at    = models.DateTimeField(auto_now=True)
+
+    @classmethod
+    def there_is_an_active_question(cls):
+        return not cls.objects.last().answered
