@@ -8,7 +8,7 @@ class MessageParser:
 
         if 'event' in request_body: 
             text = request_body['event']['text']
-        
+    
         if 'challenge' in request_body:
             response = { 
                 'action' : ACTION_LIST['challenge'],
@@ -19,12 +19,12 @@ class MessageParser:
                 'action': ACTION_LIST['bot_user'],
                 'text'  : text
             }
-        elif State.is_active_question:
+        elif State.there_is_an_active_question():
             response = {
                 'action' : ACTION_LIST['answer_question'],
                 'text'   : text
             }
-        elif not State.is_active_question:
+        elif not State.there_is_an_active_question():
             response = {
                 'action' : ACTION_LIST['ask_a_question'],
                 'text'   : text

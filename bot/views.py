@@ -15,21 +15,12 @@ def response(request):
     action_template = MessageParser.parse(body)
     response = ActionDispatcher.dispatch(action_template)
     
-    
     if response['is_slack_message']:
 
-    # if user != 'U01CD4QHR97':
         slack_client = SlackClient()
         slack_client.open_conversation(["U01C06563L2"])
-        
-    #     state = State.objects.last()
-
-        
-            
-
-    #     state.save()
         slack_client.send_messgage(response['message'])
 
         return HttpResponse('ok')
     
-    return response['message']
+    return HttpResponse(response['message'])

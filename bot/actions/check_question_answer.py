@@ -15,4 +15,5 @@ class CheckQuestionAnswer:
             state.correct = False
             message = f'No. La respuesta correcta es {card.back}'
         
+        state.save()
         return { 'message' : message, 'is_slack_message' : True }
