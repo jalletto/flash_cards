@@ -1,6 +1,5 @@
-import os
-import json
 from slack import WebClient
+import os
 
 
 class SlackClient:
