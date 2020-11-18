@@ -12,8 +12,7 @@ class Command(BaseCommand):
         if self.should_ask_question():
             response = AskQuestion.execute()
             slack_client = SlackClient()
-            slack_client.open_conversation(["U01C06563L2"])
-            slack_client.send_messgage(response['message'])
+            slack_client.send_messgage(response['message'], ["U01C06563L2"])
     
     def time_since_last_question_was_answered(self):
         return (datetime.now(timezone.utc) - State.objects.last().updated_at).seconds
@@ -21,7 +20,7 @@ class Command(BaseCommand):
     def should_ask_question(self):
         if State.there_is_an_active_question(): 
             return False
-        elif self.time_since_last_question_was_answered() < 1800: 
+        elif self.time_since_last_question_was_answered() < 18: 
             return False
         else:
             return True
