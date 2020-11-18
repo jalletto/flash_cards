@@ -1,5 +1,5 @@
-from slack import WebClient
 import os
+from slack import WebClient
 
 
 class SlackClient:
@@ -10,9 +10,9 @@ class SlackClient:
 
     def open_conversation(self, users):
         self.response = self.web_client.conversations_open(users=users)
-    
+
     def close_conversation(self):
-        self.web_client.conversations_close(channel=channel)
+        self.web_client.conversations_close(channel=self.response['channel']['id'])
 
     def send_messgage(self, message, users):
         self.open_conversation(users)
@@ -20,3 +20,4 @@ class SlackClient:
             channel=self.response['channel']['id'],
             text=message
         )
+        self.close_conversation()
