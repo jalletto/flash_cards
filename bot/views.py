@@ -14,10 +14,8 @@ def get_slack_response(request):
     response = ActionDispatcher.dispatch(action_template)
 
     if response['send_slack_message']:
-
         slack_client = SlackClient()
-        slack_client.open_conversation(["U01C06563L2"])
-        slack_client.send_messgage(response['message'])
+        slack_client.send_messgage(response['message'], ["U01C06563L2"])
 
         return HttpResponse('ok')
 
