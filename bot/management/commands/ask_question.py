@@ -18,17 +18,18 @@ class Command(BaseCommand):
             self.stdout.write("No question sent.")
 
     def is_week_day(self):
-        # Return the day of the week as an integer, where Monday is 0 and Sunday is 6.
+        # weeday returns the day of the week as an integer, where Monday is 0 and Sunday is 6.
         return self.todays_date_and_time.weekday() not in [5, 6]
 
-    def is_between_9_and_3(self):
-        return self.todays_date_and_time.hour > 8 and self.todays_date_and_time.hour < 15
+    def is_between_8_and_3(self):
+        # time is in UTC
+        return self.todays_date_and_time.hour > 14 and self.todays_date_and_time.hour < 21
 
     def time_since_last_question_was_answered(self):
         return (datetime.now(timezone.utc) - State.objects.last().updated_at).seconds
 
     def should_ask_question(self):
-        if not self.is_week_day() or not self.is_between_9_and_3():
+        if not self.is_week_day() or not self.is_between_8_and_3():
             # cant have cron on heroku so check time and weekday here.
             return False
         elif State.there_is_an_active_question():

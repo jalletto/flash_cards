@@ -28,8 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'localhost',
-   '.ngrok.io',
-   'powerful-gorge-60355.herokuapp.com'
+    '.ngrok.io',
+    'powerful-gorge-60355.herokuapp.com'
 ]
 
 
